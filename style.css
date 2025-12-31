@@ -1,0 +1,1076 @@
+/* ============================================
+   Birthday Surprise - Pastel Dream Theme ☁️
+   Soft Aesthetics, Glassmorphism, Premium Feel
+   ============================================ */
+
+:root {
+    /* Pastel Palette */
+    --peach: #FFD1DC;
+    --peach-dark: #ffb7c5;
+    --mint: #CBF1F5;
+    --mint-dark: #A6E3E9;
+    --blue: #E3DFFD;
+    --lavender: #E5CCFF;
+    --cream: #FFFBF5;
+    --white: #FFFFFF;
+    --text-dark: #5A5A5A;
+    --text-light: #777777;
+
+    /* Glass Effect */
+    --glass-bg: rgba(255, 255, 255, 0.25);
+    --glass-border: rgba(255, 255, 255, 0.5);
+    --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--cream);
+    color: var(--text-dark);
+    overflow-x: hidden;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* ============================================
+   BACKGROUND - Photo Slideshow
+   ============================================ */
+#bg-slideshow {
+    position: fixed;
+    inset: 0;
+    z-index: -3;
+    background: var(--cream);
+    overflow: hidden;
+}
+
+.bg-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 2s ease-in-out;
+    filter: blur(4px) brightness(0.9);
+}
+
+.bg-slide.active {
+    opacity: 1;
+}
+
+#bg-slideshow::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 251, 245, 0.75);
+    z-index: 1;
+}
+
+#floatingElements {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* ============================================
+   HERO SECTION
+   ============================================ */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-content {
+    background: var(--glass-bg);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid var(--glass-border);
+    padding: 3rem;
+    border-radius: 30px;
+    box-shadow: var(--glass-shadow);
+    z-index: 10;
+}
+
+.hero-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: clamp(3rem, 8vw, 5rem);
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+}
+
+.hero-name {
+    font-family: 'Dancing Script', cursive;
+    font-size: clamp(4.5rem, 13vw, 7.5rem);
+    /* Slightly larger */
+    background: linear-gradient(135deg, #ff00cc, #333399);
+    /* Deep Vibrant Mix */
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 4px 15px rgba(255, 0, 204, 0.4));
+    /* Strong glow */
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.hero-quote {
+    font-size: 1.1rem;
+    color: var(--text-light);
+    font-style: italic;
+    margin-bottom: 2rem;
+}
+
+/* ============================================
+   JOURNEY CONTAINER & FRAMES
+   ============================================ */
+.journey-container {
+    padding: 100px 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+    position: relative;
+    perspective: 1000px;
+}
+
+.journey-path {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+    overflow: visible;
+}
+
+#pathLine {
+    stroke: #ff9a9e;
+    /* Premium Pink Ribbon */
+    stroke-width: 18;
+    stroke-dasharray: none;
+    filter: drop-shadow(0 4px 10px rgba(255, 105, 135, 0.4));
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    opacity: 1;
+}
+
+#pathSheen {
+    stroke: rgba(255, 255, 255, 0.5);
+    stroke-width: 5;
+    fill: none;
+    stroke-dasharray: 40, 80;
+    stroke-linecap: round;
+    animation: ribbonShimmer 8s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes ribbonShimmer {
+    from {
+        stroke-dashoffset: 0;
+    }
+
+    to {
+        stroke-dashoffset: -1000;
+    }
+}
+
+.ribbon-flower {
+    position: absolute;
+    font-size: 1.8rem;
+    pointer-events: none;
+    z-index: 1;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    animation: ribbonBloom 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.1));
+}
+
+@keyframes ribbonBloom {
+    from {
+        transform: translate(-50%, -50%) scale(0) rotate(-30deg);
+        opacity: 0;
+    }
+
+    to {
+        transform: translate(-50%, -50%) scale(1) rotate(0);
+        opacity: 1;
+    }
+}
+
+.photo-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 150px;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.photo-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.photo-item.left {
+    align-items: flex-start;
+}
+
+.photo-item.right {
+    align-items: flex-end;
+}
+
+.photo-frame {
+    position: relative;
+    width: clamp(260px, 45vw, 320px);
+    padding: 12px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(5px);
+    box-shadow: var(--glass-shadow);
+    border-radius: 20px;
+    transform-style: preserve-3d;
+    transition: transform 0.2s ease-out;
+    cursor: pointer;
+}
+
+.photo-frame img {
+    width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    border-radius: 15px;
+    display: block;
+}
+
+.style-heart {
+    border-radius: 25px;
+    border: 2px solid white;
+}
+
+.style-heart::before {
+    content: '💖';
+    position: absolute;
+    top: -15px;
+    right: -10px;
+    font-size: 2rem;
+    transform: translateZ(20px);
+}
+
+.style-polaroid {
+    background: white;
+    padding: 15px 15px 50px 15px;
+    transform: rotate(-2deg);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+}
+
+.style-polaroid img {
+    border-radius: 0;
+}
+
+.style-polaroid::after {
+    content: 'Sweet Memory 🌸';
+    bottom: 15px;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    color: #888;
+    font-family: 'Dancing Script';
+    font-size: 1.2rem;
+}
+
+.style-glow {
+    box-shadow: 0 0 20px rgba(255, 209, 220, 0.6);
+    border: 1px solid var(--peach);
+}
+
+.style-flower {
+    border-radius: 50%;
+    padding: 15px;
+    background: radial-gradient(circle, var(--white), var(--mint));
+}
+
+.style-flower img {
+    border-radius: 50%;
+}
+
+.style-flower::after {
+    content: '🌼';
+    position: absolute;
+    bottom: 0;
+    right: 10px;
+    font-size: 2.2rem;
+}
+
+.style-vintage {
+    border: 8px solid white;
+    filter: sepia(10%);
+    box-shadow: 0 5px 15px rgba(165, 137, 100, 0.2);
+}
+
+.style-modern {
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    animation: morph 8s ease-in-out infinite;
+    border: 4px solid var(--white);
+    overflow: hidden;
+}
+
+.style-modern img {
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+}
+
+@keyframes morph {
+
+    0%,
+    100% {
+        border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    }
+
+    50% {
+        border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%;
+    }
+}
+
+.photo-caption {
+    margin-top: 15px;
+    background: rgba(255, 255, 255, 0.7);
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-size: 1rem;
+    color: var(--text-dark);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    backdrop-filter: blur(4px);
+    max-width: 280px;
+    text-align: center;
+}
+
+/* ============================================
+   SURPRISE SECTION: 3D GIFT BOX & MEGA BOUQUET
+   ============================================ */
+.surprise-section {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1500px;
+    position: relative;
+    padding: 100px 20px;
+}
+
+.gift-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    transform-style: preserve-3d;
+    width: 100%;
+}
+
+.gift-box {
+    width: 180px;
+    height: 180px;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    box-shadow:
+        inset 5px 5px 15px rgba(255, 255, 255, 0.4),
+        inset -5px -5px 15px rgba(0, 0, 0, 0.1),
+        0 40px 80px rgba(255, 105, 135, 0.4);
+    border-radius: 20px;
+    position: relative;
+    cursor: pointer;
+    transform-style: preserve-3d;
+    animation: floatBox 3s ease-in-out infinite;
+    z-index: 10;
+}
+
+.gift-box::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 40px;
+    height: 100%;
+    background: linear-gradient(to right, #d63384, #a61e4d);
+    transform: translateX(-50%);
+}
+
+.gift-lid {
+    width: 200px;
+    height: 50px;
+    position: absolute;
+    top: -20px;
+    left: -10px;
+    background: linear-gradient(145deg, #ffc3c8, #ff9a9e);
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    transform: translateZ(20px);
+    z-index: 15;
+}
+
+.gift-bow {
+    position: absolute;
+    width: 100px;
+    height: 50px;
+    top: -65px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 20;
+}
+
+.gift-bow::before,
+.gift-bow::after {
+    content: '';
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border: 10px solid #d63384;
+    border-radius: 50% 50% 0 50%;
+    background: linear-gradient(45deg, #f06595, #d63384);
+}
+
+.gift-bow::before {
+    left: 0;
+    transform: rotate(45deg);
+}
+
+.gift-bow::after {
+    right: 0;
+    transform: rotate(135deg) scaleX(-1);
+}
+
+@keyframes floatBox {
+
+    0%,
+    100% {
+        transform: translateY(0) rotateX(10deg);
+    }
+
+    50% {
+        transform: translateY(-20px) rotateX(10deg);
+    }
+}
+
+.gift-text {
+    margin-top: 40px;
+    color: var(--text-dark);
+    font-size: 1.2rem;
+    font-style: italic;
+    text-align: center;
+    max-width: 500px;
+    line-height: 1.6;
+    transition: all 0.8s ease;
+    padding: 20px;
+    opacity: 0;
+    /* Hidden until opened */
+}
+
+
+.mega-bouquet-container {
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    pointer-events: none;
+    z-index: 5;
+}
+
+.mega-flower {
+    position: absolute;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0);
+    filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.2));
+    animation: megaBloomFixed 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    white-space: nowrap;
+}
+
+@keyframes megaBloomFixed {
+    to {
+        opacity: 1;
+        transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y))) scale(1);
+    }
+}
+
+.gift-text.final-active {
+    margin-top: 180px;
+    opacity: 1 !important;
+    animation: fadeInGiftText 1.5s ease-out forwards;
+}
+
+@keyframes fadeInGiftText {
+    0% {
+        opacity: 0;
+        transform: translateY(40px) scale(0.8);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* ============================================
+   FINAL MESSAGE & FOOTER
+   ============================================ */
+.final-wish-section {
+    padding: 100px 20px;
+    background: linear-gradient(to top, var(--white), transparent);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 1.5s ease-in-out;
+}
+
+.final-wish-section.visible {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+}
+
+.wish-box {
+    background: var(--white);
+    padding: 60px 40px;
+    border-radius: 50px;
+    box-shadow: 0 30px 90px rgba(0, 0, 0, 0.08);
+    max-width: 650px;
+    margin: 0 auto;
+    text-align: center;
+    border: 1px solid var(--peach);
+    position: relative;
+}
+
+.wish-box::before {
+    content: '💝';
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 3rem;
+}
+
+.envelope-top {
+    font-size: 4rem;
+    margin-bottom: 30px;
+}
+
+.final-message {
+    color: var(--text-dark);
+    line-height: 2;
+    font-size: 1.2rem;
+}
+
+.signature {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.2rem;
+    color: #ff6b8a;
+    margin-top: 30px;
+}
+
+.final-date {
+    color: #999;
+    margin-top: 15px;
+    font-size: 0.9rem;
+}
+
+
+/* ============================================
+   ANIMATIONS & PARTICLES
+   ============================================ */
+.tree-container {
+    position: absolute;
+    bottom: -20px;
+    width: 300px;
+    height: 400px;
+    z-index: 5;
+    pointer-events: none;
+    opacity: 0.9;
+}
+
+.left-tree {
+    left: -50px;
+}
+
+.right-tree {
+    right: -50px;
+}
+
+.lush-particle {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border-radius: 50% 0 50% 50%;
+    background: var(--peach);
+    opacity: 0.85;
+    animation: lushSway 3s ease-in-out infinite alternate;
+    transform-origin: bottom center;
+}
+
+.lush-particle.leaf {
+    background: #95e1d3;
+    border-radius: 0 50% 0 50%;
+}
+
+@keyframes lushSway {
+    0% {
+        transform: rotate(-5deg) scale(0.9);
+    }
+
+    100% {
+        transform: rotate(5deg) scale(1.1);
+    }
+}
+
+.firefly {
+    position: fixed;
+    width: 4px;
+    height: 4px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #fff, 0 0 20px #ff9a9e;
+    pointer-events: none;
+    z-index: 100;
+    animation: blink 2s infinite alternate;
+}
+
+@keyframes blink {
+    from {
+        opacity: 0.2;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+#confetti,
+#cursorTrail {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 10000;
+}
+
+.ripple {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    transform: scale(0);
+    animation: rippleEffect 0.6s linear;
+    pointer-events: none;
+}
+
+@keyframes rippleEffect {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+/* Mobile Adjustments */
+@media (max-width: 600px) {
+
+    /* Hero Adjustments */
+    .hero-content {
+        padding: 2rem 1.5rem;
+        width: 90%;
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .hero-name {
+        font-size: 3.5rem;
+    }
+
+    /* Countdown Adjustments */
+    .countdown-box {
+        min-width: 60px;
+        padding: 10px;
+    }
+
+    .countdown-value {
+        font-size: 1.5rem;
+    }
+
+    /* Photo Frame Layout */
+    .photo-item {
+        margin-bottom: 80px;
+    }
+
+    .photo-frame {
+        width: 90vw;
+    }
+
+    .photo-caption {
+        font-size: 0.9rem;
+        max-width: 100%;
+    }
+
+    /* Gift Box & Surprise */
+    .gift-box {
+        width: 140px;
+        height: 140px;
+    }
+
+    .gift-lid {
+        width: 160px;
+        left: -10px;
+    }
+
+    .gift-text {
+        font-size: 1rem;
+        width: 90%;
+    }
+
+    .gift-text.final-active {
+        margin-top: 140px;
+        transform: scale(1);
+    }
+
+    /* Tree Adjustments */
+    .tree-container {
+        width: 120px;
+        height: 180px;
+    }
+
+    .left-tree {
+        left: -40px;
+    }
+
+    .right-tree {
+        right: -40px;
+    }
+}
+
+.countdown-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 20px;
+}
+
+.countdown-box {
+    background: white;
+    border-radius: 15px;
+    padding: 15px;
+    min-width: 70px;
+    text-align: center;
+    box-shadow: 0 8px 25px rgba(255, 154, 158, 0.2);
+}
+
+.countdown-value {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #ff6b8a;
+    line-height: 1.2;
+}
+
+.countdown-label {
+    display: block;
+    font-size: 0.75rem;
+    color: #999;
+}
+
+/* ============================================
+   PROGRESS BAR
+   ============================================ */
+.progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 209, 220, 0.3);
+    z-index: 9998;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #ff9a9e, #fad0c4, #ff6b8a);
+    border-radius: 0 2px 2px 0;
+    transition: width 0.1s ease-out;
+    box-shadow: 0 0 10px rgba(255, 107, 138, 0.5);
+}
+
+/* ============================================
+   CHERRY BLOSSOM BLOOM ANIMATION
+   ============================================ */
+.bloom {
+    fill: #FFB7C5;
+    opacity: 0;
+    animation: bloomPulse 3s ease-in-out infinite;
+}
+
+@keyframes bloomPulse {
+
+    0%,
+    100% {
+        opacity: 0.6;
+        r: 4;
+        fill: #FFB7C5;
+    }
+
+    50% {
+        opacity: 1;
+        r: 6;
+        fill: #FF9AAE;
+    }
+}
+
+/* Red Flower Blooms (SVG) */
+.bloom-red {
+    fill: #FF6B6B;
+    opacity: 0;
+    animation: bloomPulseRed 3s ease-in-out infinite;
+}
+
+@keyframes bloomPulseRed {
+
+    0%,
+    100% {
+        opacity: 0.6;
+        r: 4;
+        fill: #FF6B6B;
+    }
+
+    50% {
+        opacity: 1;
+        r: 6;
+        fill: #E63946;
+    }
+}
+
+/* Red Flower Particles (JS generated) */
+.lush-particle.red-flower {
+    background: #FF6B6B !important;
+    border-radius: 50% 0 50% 50%;
+    box-shadow: 0 0 4px rgba(230, 57, 70, 0.4);
+}
+
+.bloom-anim {
+    animation: bloomFloat 4s ease-in-out infinite alternate;
+}
+
+@keyframes bloomFloat {
+    0% {
+        transform: scale(0.9) rotate(-5deg);
+        opacity: 0.7;
+    }
+
+    100% {
+        transform: scale(1.1) rotate(5deg);
+        opacity: 1;
+    }
+}
+
+.countdown-flip {
+    animation: flipNumber 0.3s ease-out;
+}
+
+@keyframes flipNumber {
+    0% {
+        transform: rotateX(90deg);
+        opacity: 0;
+    }
+
+    100% {
+        transform: rotateX(0);
+        opacity: 1;
+    }
+}
+
+/* ============================================
+   SURPRISE REVEAL EFFECTS
+   ============================================ */
+
+/* Celebration pulse for hero */
+@keyframes celebrationPulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 30px rgba(255, 105, 180, 0.4);
+    }
+
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 0 80px rgba(255, 105, 180, 0.9);
+    }
+}
+
+/* Flash celebration overlay */
+.surprise-flash {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(ellipse at center, rgba(255, 105, 180, 0.95), rgba(138, 43, 226, 0.95));
+    z-index: 99999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: flashReveal 4s ease-out forwards;
+}
+
+@keyframes flashReveal {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+
+    15% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    70% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        pointer-events: none;
+    }
+}
+
+.flash-content {
+    text-align: center;
+    color: white;
+    animation: flashContentPop 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes flashContentPop {
+    0% {
+        transform: scale(0) rotate(-10deg);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1) rotate(0);
+        opacity: 1;
+    }
+}
+
+.flash-emoji {
+    font-size: 5rem;
+    margin-bottom: 20px;
+    animation: emojiDance 0.5s ease-in-out infinite alternate;
+}
+
+@keyframes emojiDance {
+    from {
+        transform: scale(1) rotate(-5deg);
+    }
+
+    to {
+        transform: scale(1.1) rotate(5deg);
+    }
+}
+
+.flash-text {
+    font-family: 'Dancing Script', cursive;
+    font-size: clamp(3rem, 10vw, 5rem);
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
+    margin-bottom: 10px;
+}
+
+.flash-name {
+    font-family: 'Dancing Script', cursive;
+    font-size: clamp(4rem, 15vw, 8rem);
+    font-weight: 700;
+    text-shadow: 0 0 50px rgba(255, 255, 255, 1);
+    animation: nameGlow 1s ease-in-out infinite alternate;
+}
+
+@keyframes nameGlow {
+    from {
+        text-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
+        transform: scale(1);
+    }
+
+    to {
+        text-shadow: 0 0 60px rgba(255, 255, 255, 1), 0 0 100px rgba(255, 105, 180, 0.8);
+        transform: scale(1.05);
+    }
+}
+
+/* Scroll hint after surprise */
+.scroll-hint {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 15px 30px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50px;
+    font-size: 1rem;
+    color: #ff6b8a;
+    font-weight: 600;
+    box-shadow: 0 5px 25px rgba(255, 107, 138, 0.3);
+    animation: scrollBounce 1.5s ease-in-out infinite;
+    z-index: 100;
+}
+
+@keyframes scrollBounce {
+
+    0%,
+    100% {
+        transform: translateX(-50%) translateY(0);
+    }
+
+    50% {
+        transform: translateX(-50%) translateY(-10px);
+    }
+}
+
+/* Floating Music Button (for after countdown) */
+.floating-music-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    font-size: 1.8rem;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    border: none;
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 8px 30px rgba(255, 105, 135, 0.5);
+    z-index: 9999;
+    animation: musicBtnPulse 2s ease-in-out infinite;
+    transition: transform 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.floating-music-btn:hover {
+    transform: scale(1.1);
+}
+
+@keyframes musicBtnPulse {
+
+    0%,
+    100% {
+        box-shadow: 0 8px 30px rgba(255, 105, 135, 0.5);
+    }
+
+    50% {
+        box-shadow: 0 8px 50px rgba(255, 105, 135, 0.8);
+    }
+}

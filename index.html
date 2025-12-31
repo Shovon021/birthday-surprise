@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="bn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎂 Happy Birthday ইকরা! 💜</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Start Overlay for Audio Policy -->
+    <div id="start-overlay"
+        style="position:fixed;inset:0;background:rgba(0,0,0,0.8);z-index:9999;display:flex;justify-content:center;align-items:center;flex-direction:column;color:white;backdrop-filter:blur(10px);">
+        <h1
+            style="font-family:'Dancing Script', cursive; font-size:clamp(2.5rem, 8vw, 4rem); margin-bottom:20px; text-align:center;">
+            🎉 একটি সারপ্রাইজ অপেক্ষা করছে...</h1>
+        <button id="start-btn"
+            style="padding:15px 40px; font-size:1.5rem; background:#ff9a9e; border:none; border-radius:50px; cursor:pointer; color:white; font-family:'Poppins', sans-serif; box-shadow:0 0 20px rgba(255,154,158,0.6);">Click
+            to Open 🎁</button>
+    </div>
+
+    <!-- Background Elements -->
+    <div id="bg-slideshow"></div>
+    <div id="floatingElements"></div>
+    <div id="petals"></div>
+    <canvas id="confetti"></canvas>
+    <canvas id="cursorTrail"></canvas>
+    <!-- <div class="stars-bg"></div> Removed to let photos show -->
+
+    <!-- Music Toggle -->
+    <!-- Music Toggle Removed for continuous play -->
+    <!-- <button id="musicToggle" class="music-btn">🎵</button> -->
+    <div class="audio-controls">
+        <audio id="bgMusic" loop>
+            <source src="background-melody.mp3" type="audio/mpeg">
+        </audio>
+        <audio id="celebrationMusic" loop>
+            <source src="celebration-song.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <!-- Progress & Indicator -->
+    <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+    </div>
+    <!-- Scroll Indicator Removed -->
+
+    <!-- ============================================
+         SECTION 1: HERO
+         ============================================ -->
+    <header class="hero">
+        <div class="tree-container left-tree">
+            <svg viewBox="0 0 200 300" class="tree-svg">
+                <path d="M100,300 Q80,200 40,150 T20,50" stroke="#5A4A42" stroke-width="8" fill="none" />
+                <path d="M100,250 Q120,200 160,150" stroke="#5A4A42" stroke-width="6" fill="none" />
+                <path d="M100,200 Q80,150 60,100" stroke="#5A4A42" stroke-width="5" fill="none" />
+                <!-- Pink Blooms -->
+                <circle cx="20" cy="50" r="5" class="bloom" />
+                <circle cx="40" cy="70" r="4" class="bloom" style="animation-delay: 0.2s" />
+                <circle cx="160" cy="150" r="5" class="bloom" style="animation-delay: 0.5s" />
+                <circle cx="60" cy="100" r="4" class="bloom" style="animation-delay: 0.3s" />
+                <circle cx="140" cy="180" r="4" class="bloom" style="animation-delay: 0.7s" />
+                <circle cx="30" cy="85" r="5" class="bloom" style="animation-delay: 0.4s" />
+                <circle cx="55" cy="65" r="4" class="bloom" style="animation-delay: 0.6s" />
+                <circle cx="15" cy="75" r="3" class="bloom" style="animation-delay: 0.8s" />
+                <circle cx="170" cy="130" r="5" class="bloom" style="animation-delay: 0.9s" />
+                <circle cx="150" cy="165" r="4" class="bloom" style="animation-delay: 1.0s" />
+                <circle cx="180" cy="145" r="4" class="bloom" style="animation-delay: 1.1s" />
+                <!-- Red Flowers -->
+                <circle cx="25" cy="60" r="5" class="bloom-red" style="animation-delay: 0.15s" />
+                <circle cx="50" cy="80" r="4" class="bloom-red" style="animation-delay: 0.35s" />
+                <circle cx="155" cy="140" r="5" class="bloom-red" style="animation-delay: 0.55s" />
+                <circle cx="45" cy="95" r="4" class="bloom-red" style="animation-delay: 0.75s" />
+                <circle cx="165" cy="160" r="4" class="bloom-red" style="animation-delay: 0.95s" />
+                <circle cx="175" cy="170" r="3" class="bloom-red" style="animation-delay: 1.15s" />
+            </svg>
+        </div>
+        <div class="tree-container right-tree">
+            <svg viewBox="0 0 200 300" class="tree-svg" style="transform: scaleX(-1);">
+                <path d="M100,300 Q80,200 40,150 T20,50" stroke="#5A4A42" stroke-width="8" fill="none" />
+                <path d="M100,250 Q120,200 160,150" stroke="#5A4A42" stroke-width="6" fill="none" />
+                <path d="M100,200 Q80,150 60,100" stroke="#5A4A42" stroke-width="5" fill="none" />
+                <path d="M100,220 Q130,180 180,140" stroke="#5A4A42" stroke-width="5" fill="none" />
+                <!-- Pink Blooms -->
+                <circle cx="20" cy="50" r="5" class="bloom" />
+                <circle cx="40" cy="70" r="4" class="bloom" style="animation-delay: 0.2s" />
+                <circle cx="160" cy="150" r="5" class="bloom" style="animation-delay: 0.5s" />
+                <circle cx="60" cy="100" r="4" class="bloom" style="animation-delay: 0.3s" />
+                <circle cx="140" cy="180" r="4" class="bloom" style="animation-delay: 0.7s" />
+                <circle cx="30" cy="85" r="5" class="bloom" style="animation-delay: 0.4s" />
+                <circle cx="55" cy="65" r="4" class="bloom" style="animation-delay: 0.6s" />
+                <circle cx="15" cy="75" r="3" class="bloom" style="animation-delay: 0.8s" />
+                <!-- Right side blooms (fills empty area) -->
+                <circle cx="180" cy="140" r="5" class="bloom" style="animation-delay: 0.25s" />
+                <circle cx="190" cy="125" r="4" class="bloom" style="animation-delay: 0.45s" />
+                <circle cx="175" cy="155" r="5" class="bloom" style="animation-delay: 0.65s" />
+                <circle cx="185" cy="165" r="4" class="bloom" style="animation-delay: 0.85s" />
+                <circle cx="195" cy="150" r="3" class="bloom" style="animation-delay: 1.05s" />
+                <circle cx="170" cy="130" r="4" class="bloom" style="animation-delay: 1.2s" />
+                <circle cx="165" cy="170" r="5" class="bloom" style="animation-delay: 1.3s" />
+                <!-- Red Flowers -->
+                <circle cx="25" cy="60" r="5" class="bloom-red" style="animation-delay: 0.15s" />
+                <circle cx="50" cy="80" r="4" class="bloom-red" style="animation-delay: 0.35s" />
+                <circle cx="155" cy="140" r="5" class="bloom-red" style="animation-delay: 0.55s" />
+                <circle cx="45" cy="95" r="4" class="bloom-red" style="animation-delay: 0.75s" />
+                <circle cx="188" cy="135" r="4" class="bloom-red" style="animation-delay: 0.95s" />
+                <circle cx="178" cy="160" r="5" class="bloom-red" style="animation-delay: 1.1s" />
+                <circle cx="192" cy="145" r="3" class="bloom-red" style="animation-delay: 1.25s" />
+                <circle cx="172" cy="175" r="4" class="bloom-red" style="animation-delay: 1.4s" />
+            </svg>
+        </div>
+
+        <div class="hero-content">
+            <div class="hero-decoration">🌸 💜 🌸</div>
+            <h1 class="hero-title">Happy Birthday</h1>
+            <h2 class="hero-name">ইকরা</h2>
+            <p class="hero-quote">"হ্যাপি বার্ডে ডে ব্রোওওওওও। এই তো আর কিছু সময় পরেই ইয়েএএএএ"</p>
+            <div class="countdown-container" id="countdown">
+                <div class="countdown-box">
+                    <span class="countdown-value" id="days">00</span>
+                    <span class="countdown-label">দিন</span>
+                </div>
+                <div class="countdown-separator">:</div>
+                <div class="countdown-box">
+                    <span class="countdown-value" id="hours">00</span>
+                    <span class="countdown-label">ঘণ্টা</span>
+                </div>
+                <div class="countdown-separator">:</div>
+                <div class="countdown-box">
+                    <span class="countdown-value" id="minutes">00</span>
+                    <span class="countdown-label">মিনিট</span>
+                </div>
+                <div class="countdown-separator">:</div>
+                <div class="countdown-box">
+                    <span class="countdown-value" id="seconds">00</span>
+                    <span class="countdown-label">সেকেন্ড</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ============================================
+         SECTION 2: THE JOURNEY (Dynamic Gallery)
+         ============================================ -->
+    <main class="journey-container" id="journey">
+        <!-- Connecting Line SVG -->
+        <svg class="journey-path">
+            <path id="pathLine" d="" fill="none" />
+            <path id="pathSheen" d="" fill="none" />
+        </svg>
+
+        <!-- Photo Items will be injected here by script.js -->
+        <!-- Example Structure:
+        <div class="photo-item left/right">
+            <div class="photo-frame style-X">
+                <img src="photos/photoN.jpg">
+            </div>
+        </div>
+        -->
+    </main>
+
+    <!-- ============================================
+         SECTION 3: SURPRISE BOX
+         ============================================ -->
+    <section class="surprise-section">
+        <div class="gift-container" id="giftBox">
+            <div class="gift-box" onclick="openGift()" style="cursor: pointer;">
+                <div class="gift-lid"></div>
+                <div class="gift-body"></div>
+                <div class="gift-bow"></div>
+            </div>
+            <div class="gift-text" style="opacity: 0;"></div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         SECTION 4: THE MESSAGE
+         ============================================ -->
+    <footer class="final-wish-section" id="finalWish">
+        <div class="wish-box">
+            <div class="envelope-top">💌</div>
+            <h3>প্রিয় ইকরা,</h3>
+            <p class="final-message">
+                ইয়ে ইকরা আজ তোমার জন্মদিন। তোমাকে জন্মদিনের শুভ শুভ শুভেচ্ছা। শুরুতেই ক্ষমা চেয়ে নিচ্ছি, তুমি
+                দিয়েছিলে হাতে লেখা চিঠি আর তোমাকে দিচ্ছি টাইপ করা ম্যাসেজ। যদি ওই শীতের ঠাণ্ডাতে আমার হাত জমে আছে, কলম
+                হয়তো ঠিক মতন ধরতে পারবো না। যাক বাহানা আর না দি।
+                <br><br>
+                খুব করে ইচ্ছা হচ্ছিল এটাও চ্যাট জিটিপি থেকে লিখি! নাহ এভাবে হয় না, তাই টাইপ করে জানাচ্ছি জন্মদিনের
+                শুভেচ্ছা। শুরুতেই ডিল টা করে ফেলি, ট্রিট টে কি খাওয়াচ্ছ? আমার প্রথম পছন্দ AFC বাকিটা তোমার ইচ্ছা। 😋
+                <br><br>
+                যাইহোক, কতটা নাদান হলে একটা মানুষ জন্মদিনের শুভেচ্ছা জানাতে এসে খাওয়া-দাওয়ার কথা শুরু করে।
+                <br><br>
+                <strong>হ্যাপি বার্থডে।</strong> জন্মদিনের শুভেচ্ছা সাথে তোমাকে শুভকামনা, আগামী বছরের সবচেয়ে কঠিন সময়
+                গুলোর জন্য। নতুন বছরে পুরনো ইকরাকে নতুন ভাবে দেখতে চাই, আরো বেশি Love & Care আর Kindness-এ ভরপুর
+                ইকরাকে!! 💜
+                <br><br>
+                সেই দায়িত্ব আর মূল্যবোধে বারবার আশান্বিত হতে চাই, তোমার আশে পাশেই থাকতে চাই।
+                <br><br>
+                নতুন বছর নতুন সম্ভাবনা। আল্লাহ এই বছর যেন তোমার মনের সকল আশা পূরণ করে। তোমার মন থেকে চাওয়া প্রতিটা
+                জিনিস, যেন তোমারই হয় বছর শেষে!! আল্লাহ তোমাকে বাঁচিয়ে রাখুক। নিজের শরীরের যত্ন নিও। 🤲
+                <br><br>
+                আর অবশেষে <strong>Thank You 😊</strong>
+            </p>
+            <p class="signature">— তোমার বন্ধু</p>
+            <div class="final-date">১ জানুয়ারি, ২০২৬</div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
